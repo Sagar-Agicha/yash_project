@@ -1,0 +1,154 @@
+<!DOCTYPE =html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BOOMchick</title>
+    <link rel="stylesheet" href="./node_modules/nes.css/css/nes.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: #182028;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+          }
+          
+          h1 {
+            font-size: 9vmin;
+            color: #8bf;
+            text-align: left;
+            font-family: Lato, sans-serif;
+            font-weight: 700;
+            margin: 1rem 0 1rem 2rem;
+          }
+          
+          /* Typewriter effect 1 */
+          @keyframes typing {
+            0.0000%, 27.3488% { content: ""; }
+            1.1395%, 26.2093% { content: "P"; }
+            2.2791%, 25.0698% { content: "Pa"; }
+            3.4186%, 23.9302% { content: "Par"; }
+            4.5581%, 22.7907% { content: "Part"; }
+            5.6977%, 21.6512% { content: "Partner"; }
+            6.8372%, 20.5116% { content: "Partner!"; }
+          
+            30.7674%, 51.2791% { content: ""; }
+            31.9070%, 50.1395% { content: "D"; }
+            33.0465%, 49.0000% { content: "Dr"; }
+            34.1860%, 47.8605% { content: "Dre"; }
+            35.3256%, 46.7209% { content: "Dream"; }
+            36.4651%, 45.5814% { content: "Dream G"; }
+            37.6047%, 44.4419% { content: "Dream Gi"; }
+            38.7442%, 43.3023% { content: "Dream Gir"; }
+            39.8837%, 42.1628% { content: "Dream Girl"; }
+          
+            54.6977%, 75.2093% { content: ""; }
+            55.8372%, 74.0698% { content: "Z"; }
+            56.9767%, 72.9302% { content: "Za"; }
+            58.1163%, 71.7907% { content: "Zan"; }
+            59.2558%, 70.6512% { content: "Zanit"; }
+            60.3953%, 69.5116% { content: "Zanita"; }
+            61.5349%, 68.3721% { content: "Zanita B"; }
+            62.6744%, 67.2326% { content: "Zanita Ba"; }
+            63.8139%, 66.0930% { content: "Zanita Bab"; }
+            64.9535%, 64.9535% { content: "Zanita Babu"; }
+          }
+          
+          @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+          }
+          
+          .typewriter {
+            --caret: currentcolor;
+          }
+          
+          .typewriter::before {
+            content: "";
+            animation: typing 13.5s infinite;
+          }
+          
+          .typewriter::after {
+            content: "";
+            border-right: 1px solid var(--caret);
+            animation: blink 0.5s linear infinite;
+          }
+                  
+          .typewriter.nocaret::after {
+            border-right: 0;
+          }
+          
+          
+          @media (prefers-reduced-motion) {
+            .typewriter::after {
+              animation: none;
+            }
+            
+            @keyframes sequencePopup {
+              0%, 100% { content: "Partner"; }
+              25% { content: "Cute Friend"; }
+              50% { content: "Babu!"; }
+              75% { content: "Dream<3"; }
+            }
+          
+            .typewriter::before {
+              content: "developer";
+              animation: sequencePopup 12s linear infinite;
+            }
+          }
+    </style>
+
+    </head>
+
+  <body class="overflow-x-hidden bg-gray-900">
+    <div class="relative h-screen overflow-hidden">
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <img
+            class="absolute h-full w-full object-cover transition-opacity duration-1000 ease-in-out opacity-100"
+            src="../assets/bg1.gif"
+            alt="Background Image"
+          />
+        </div>
+      </div>
+      <div class="absolute inset-0 flex items-center justify-center z-10">
+        <div class="flex flex-col text-white text-center">
+          <h1 aria-label="Hi! I'm a developer" class="text-4xl font-bold mb-4 bg-gray-900 bg-opacity-70 p-3 rounded-xl">
+                Welcome my&nbsp;<span class="typewriter nocaret"></span>
+          </h1>
+          <a
+            href="handshake.html"
+            class="bg-blue-900 bg-opacity-50 p-2 rounded-xl"
+          >
+            Lets start a journey together
+          </a>
+          <!-- <h1 class="animated-text">Welcome<span class="scrolling-text changing-text"></span></h1> -->
+          <!-- Other content goes here -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let backgroundImages = ["bg1.gif", "bg2.gif", "bg3.gif"]; // List of background images
+        let currentIndex = 0;
+        let backgroundElement = document.querySelector(".absolute > img");
+
+        function changeBackground() {
+          currentIndex = (currentIndex + 1) % backgroundImages.length;
+          let nextImage = backgroundImages[currentIndex];
+          backgroundElement.style.opacity = 0; // Fade out the current image
+          setTimeout(function () {
+            backgroundElement.src = `../assets/${nextImage}`; // Change to relative path
+            backgroundElement.style.opacity = 1; // Fade in the new image
+          }, 1000);
+        }
+
+        setInterval(changeBackground, 5000);
+      });
+    </script>
+  </body>
+</html>

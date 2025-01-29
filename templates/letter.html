@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=10" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><3Letter</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -211,7 +211,7 @@
         bottom: 10%;
         left: 50%;
         margin-left: -9em;
-        font-size: 150%;
+        font-size: 100%;
         text-align: justify;
         overflow: hidden;
         -webkit-transform-origin: 100% 100%;
@@ -331,6 +331,24 @@
         }
         100% {
           top: -170%;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        h1 {
+          font-size: 6em;
+        }
+        
+        #titles {
+          width: 90%;
+          margin-left: -45%;
+          font-size: 90%;
+        }
+        
+        p#start {
+          width: 90%;
+          font-size: 90%;
+          margin: 40% auto;
         }
       }
     </style>

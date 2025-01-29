@@ -214,7 +214,7 @@
         font-size: 100%;
         text-align: justify;
         overflow: hidden;
-        -webkit-transform-origin: 100% 100%;
+        -webkit-transform-origin: 50% 100%;
         -moz-transform-origin: 50% 100%;
         -ms-transform-origin: 50% 100%;
         -o-transform-origin: 50% 100%;
@@ -227,10 +227,6 @@
         opacity: 0;
         animation: fadeIn 2s ease-out 2s forwards;
         font-family: 'Dancing Script', cursive;
-        background: linear-gradient(135deg, rgba(255, 192, 203, 0.1), rgba(255, 143, 163, 0.1));
-        padding: 2rem;
-        border-radius: 20px;
-        box-shadow: 0 0 20px rgba(255, 143, 163, 0.2);
       }
 
       #titles:after {
@@ -278,21 +274,34 @@
       }
 
       #titles a {
-        color: #ff6;
-        text-decoration: underline;
-        background-color: purple;
-        color :white;
+        color: white !important;
+        text-decoration: none;
+        background-color: rgba(128, 0, 128, 0.8) !important;
+        padding: 15px 30px !important;
+        border-radius: 10px;
+        display: inline-block;
+        margin-top: 20px;
+        font-size: 1.2em;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+      }
 
+      #titles a:hover {
+        background-color: rgba(148, 0, 148, 0.9) !important;
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
       }
 
       #titlecontent {
         position: absolute;
         top: 100%;
-        -webkit-animation: scroll 100s linear 4s infinite;
-        -moz-animation: scroll 100s linear 4s infinite;
-        -ms-animation: scroll 100s linear 4s infinite;
-        -o-animation: scroll 100s linear 4s infinite;
-        animation: scroll 100s linear 4s infinite;
+        -webkit-animation: scroll 60s linear 4s infinite;
+        -moz-animation: scroll 60s linear 4s infinite;
+        -ms-animation: scroll 60s linear 4s infinite;
+        -o-animation: scroll 60s linear 4s infinite;
+        animation: scroll 60s linear 4s infinite;
       }
 
       /* animation */
@@ -415,10 +424,6 @@
       /* Enhance existing styles */
       #titles {
         font-family: 'Dancing Script', cursive;
-        background: linear-gradient(135deg, rgba(255, 192, 203, 0.1), rgba(255, 143, 163, 0.1));
-        padding: 2rem;
-        border-radius: 20px;
-        box-shadow: 0 0 20px rgba(255, 143, 163, 0.2);
       }
 
       .center {
@@ -438,6 +443,7 @@
         margin-bottom: 1.5em;
         color: #ffd1dc !important;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        font-weight: 700;
       }
 
       /* Add floating hearts */
@@ -461,36 +467,18 @@
 
       /* Add romantic quotes with special styling */
       .love-quote {
-        font-family: 'Parisienne', cursive;
-        font-size: 1.4em;
-        color: #ff8fa3;
-        text-align: center;
-        margin: 2em 0;
-        padding: 1em;
-        border-top: 2px solid rgba(255, 143, 163, 0.3);
-        border-bottom: 2px solid rgba(255, 143, 163, 0.3);
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+        text-align: inherit;
+        margin: 1em 0;
+        padding: 0;
+        border: none;
       }
 
       /* Add glowing border effect */
       #titles::before {
-        content: '';
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        bottom: -2px;
-        border: 2px solid rgba(255, 143, 163, 0.3);
-        border-radius: 22px;
-        animation: borderGlow 2s ease-in-out infinite;
-      }
-
-      @keyframes borderGlow {
-        0%, 100% {
-          box-shadow: 0 0 15px rgba(255, 143, 163, 0.3);
-        }
-        50% {
-          box-shadow: 0 0 30px rgba(255, 143, 163, 0.5);
-        }
+        display: none;
       }
 
       /* Responsive font sizes and spacing */
@@ -535,51 +523,17 @@
 
       /* Enhanced romantic elements */
       .love-highlight {
-        background: linear-gradient(120deg, rgba(255, 143, 163, 0.2), rgba(255, 192, 203, 0.2));
-        padding: 0.5em 1em;
-        border-radius: 10px;
-        margin: 1em 0;
-        transform: rotate(-1deg);
+        background: none;
+        padding: 0;
+        transform: none;
       }
 
       .heart-divider {
-        text-align: center;
-        font-size: 1.2em;
-        margin: 1em 0;
-        color: #ff8fa3;
-        text-shadow: 0 0 10px rgba(255, 143, 163, 0.5);
+        display: none;
       }
 
-      .heart-divider::before,
-      .heart-divider::after {
-        content: '•';
-        margin: 0 10px;
-        color: rgba(255, 143, 163, 0.5);
-      }
-
-      /* Animated love border */
       .love-border {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        pointer-events: none;
-        z-index: 1000;
-      }
-
-      .love-border::before {
-        content: '';
-        position: absolute;
-        inset: 10px;
-        border: 2px solid rgba(255, 143, 163, 0.3);
-        border-radius: 10px;
-        animation: borderPulse 3s ease-in-out infinite;
-      }
-
-      @keyframes borderPulse {
-        0%, 100% { transform: scale(1); opacity: 0.5; }
-        50% { transform: scale(1.02); opacity: 0.8; }
+        display: none;
       }
 
       /* Mobile-optimized floating hearts */
@@ -659,6 +613,78 @@
           opacity: 1;
         }
       }
+
+      /* Add this CSS for the skip button */
+      .skip-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        background-color: rgba(128, 0, 128, 0.8);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: 'Poor Story', system-ui;
+        font-size: 1em;
+        border: none;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .skip-button:hover {
+        background-color: rgba(148, 0, 148, 0.9);
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      }
+
+      .romantic-transition {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        z-index: 9999;
+        opacity: 0;
+        pointer-events: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .romantic-transition.active {
+        animation: fadeToHearts 2s forwards;
+      }
+
+      .heart-grid {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+      }
+
+      .transition-heart {
+        font-size: 3em;
+        color: #ff8fa3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: heartBeat 1s infinite;
+      }
+
+      @keyframes fadeToHearts {
+        0% { opacity: 0; }
+        50% { opacity: 1; }
+        100% { opacity: 1; }
+      }
+
+      @keyframes heartBeat {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+      }
     </style>
   </head>
 
@@ -715,12 +741,11 @@
 
         
         <p>apka pyara , Tanish(me)</p>
-        <p class="center">
+        <p class="center" style="margin-top: 40px;">
           <a
             href="choice.html"
-            class="mt-4 bg-gray-900 text-white hover:bg-gray-700 rounded-xl w-fit p-3 bg-opacity-60"
-            >agge bde?</a
-          >
+            style="display: inline-block; margin: 20px auto;"
+          >agge bde?</a>
         </p>
       </div>
     </div>
@@ -862,6 +887,51 @@
           intro.remove();
         }, 5000);
       });
+
+      function skipToEnd() {
+        const titleContent = document.getElementById('titlecontent');
+        titleContent.style.animation = 'none';
+        titleContent.style.top = '-170%';
+        
+        // Scroll to the bottom of the page
+        window.scrollTo(0, document.body.scrollHeight);
+        
+        // Make sure the "agge bde?" button is visible
+        const nextButton = document.querySelector('#titles a');
+        if (nextButton) {
+          nextButton.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+      // Handle transition when clicking the "agge bde?" button
+      document.querySelector('#titles a').addEventListener('click', function(e) {
+        e.preventDefault();
+        const transition = document.querySelector('.romantic-transition');
+        const grid = document.querySelector('.heart-grid');
+        
+        // Create heart grid
+        for(let i = 0; i < 100; i++) {
+          const heart = document.createElement('div');
+          heart.className = 'transition-heart';
+          heart.innerHTML = '❤';
+          heart.style.animationDelay = `${Math.random() * 1}s`;
+          grid.appendChild(heart);
+        }
+        
+        transition.classList.add('active');
+        grid.style.opacity = '1';
+        
+        // Navigate after transition
+        setTimeout(() => {
+          window.location.href = this.getAttribute('href');
+        }, 2000);
+      });
     </script>
+
+    <button class="skip-button" onclick="skipToEnd()">Skip ⏩</button>
+
+    <div class="romantic-transition">
+      <div class="heart-grid"></div>
+    </div>
   </body>
 </html>

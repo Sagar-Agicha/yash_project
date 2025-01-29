@@ -14,6 +14,8 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
+            opacity: 1;
+            animation: pageEnter 1.5s ease-out forwards;
           }
           
           h1 {
@@ -23,6 +25,8 @@
             font-family: Lato, sans-serif;
             font-weight: 700;
             margin: 1rem 0 1rem 2rem;
+            opacity: 1;
+            z-index: 20;
           }
           
           /* Typewriter effect 1 */
@@ -44,6 +48,7 @@
             37.6047%, 44.4419% { content: "Dream Gi"; }
             38.7442%, 43.3023% { content: "Dream Gir"; }
             39.8837%, 42.1628% { content: "Dream Girl"; }
+            41.0233%, 41.0233% { content: "Dream Girl!"; }
           
             54.6977%, 75.2093% { content: ""; }
             55.8372%, 74.0698% { content: "Z"; }
@@ -55,6 +60,7 @@
             62.6744%, 67.2326% { content: "Zanita Ba"; }
             63.8139%, 66.0930% { content: "Zanita Bab"; }
             64.9535%, 64.9535% { content: "Zanita Babu"; }
+            66.0930%, 66.0930% { content: "Zanita Babu!"; }
           }
           
           @keyframes blink {
@@ -64,6 +70,8 @@
           
           .typewriter {
             --caret: currentcolor;
+            opacity: 0;
+            animation: fadeInText 1s ease-out forwards 1s;
           }
           
           .typewriter::before {
@@ -99,6 +107,239 @@
               animation: sequencePopup 12s linear infinite;
             }
           }
+
+          /* Add entrance animations */
+          @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: scale(0.9);
+            }
+            to { 
+                opacity: 1; 
+                transform: scale(1);
+            }
+          }
+
+          @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+          }
+
+          /* Apply animations to elements */
+          .relative {
+            opacity: 1;
+            z-index: 10;
+          }
+
+          .absolute.inset-0 {
+            opacity: 1;
+            z-index: 5;
+          }
+
+          h1 {
+            animation: slideIn 1.5s ease-out;
+            animation-fill-mode: both;
+            animation-delay: 0.5s;  /* Slight delay for text entrance */
+          }
+
+          a {
+            animation: slideIn 1.5s ease-out;
+            animation-fill-mode: both;
+            animation-delay: 1s;  /* More delay for button entrance */
+            opacity: 1;
+            z-index: 20;
+          }
+
+          /* Add sparkles that fade in */
+          .sparkle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+          }
+
+          .entrance-sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            animation: entranceSparkle 2s ease-out;
+          }
+
+          @keyframes entranceSparkle {
+            0% {
+              transform: scale(0) rotate(0deg);
+              opacity: 0;
+            }
+            50% {
+              opacity: 1;
+            }
+            100% {
+              transform: scale(1.5) rotate(360deg);
+              opacity: 0;
+            }
+          }
+
+          /* Initial state for background image */
+          .object-cover {
+            opacity: 1 !important;
+            z-index: 1;
+            animation: imageFadeIn 2s ease-out forwards;
+          }
+
+          @keyframes imageFadeIn {
+            from { 
+              opacity: 0;
+              transform: scale(1.1);
+            }
+            to { 
+              opacity: 1;
+              transform: scale(1);
+            }
+          }
+
+          /* Heart tunnel effect */
+          .heart-tunnel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            perspective: 1000px;
+            z-index: 100;
+            pointer-events: none;
+          }
+
+          .tunnel-heart {
+            position: absolute;
+            color: #ff8fa3;
+            text-shadow: 0 0 10px rgba(255, 143, 163, 0.8);
+            animation: tunnelEffect 2s forwards;
+            z-index: 101;
+          }
+
+          @keyframes tunnelEffect {
+            from {
+              transform: translateZ(-1000px) translateX(-50%) translateY(-50%);
+              opacity: 1;
+            }
+            to {
+              transform: translateZ(500px) translateX(-50%) translateY(-50%);
+              opacity: 0;
+            }
+          }
+
+          /* Enhanced entrance animations */
+          @keyframes fadeInText {
+            from { 
+              opacity: 0.5;
+              transform: translateY(20px);
+            }
+            to { 
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          /* Adjust animations to start from visible state */
+          @keyframes pageEnter {
+            from { 
+                opacity: 0.5;
+                transform: scale(1.1);
+            }
+            to { 
+                opacity: 1;
+                transform: scale(1);
+            }
+          }
+
+          /* Add floating rose petals */
+          .rose-petal {
+            position: fixed;
+            pointer-events: none;
+            animation: floatPetal 10s linear infinite;
+            z-index: 15;
+          }
+
+          @keyframes floatPetal {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+          }
+
+          /* Add glowing border around content */
+          .flex.flex-col {
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 
+                0 0 15px rgba(255, 143, 163, 0.3),
+                0 0 30px rgba(255, 143, 163, 0.2);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+          }
+
+          /* Add floating hearts around text */
+          .floating-decor {
+            position: absolute;
+            font-size: 24px;
+            color: #ff8fa3;
+            text-shadow: 0 0 10px rgba(255, 143, 163, 0.8);
+            pointer-events: none;
+            animation: floatAround 6s ease-in-out infinite;
+          }
+
+          @keyframes floatAround {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(10px, -10px) rotate(5deg);
+            }
+            50% {
+                transform: translate(0, -15px) rotate(0deg);
+            }
+            75% {
+                transform: translate(-10px, -10px) rotate(-5deg);
+            }
+          }
+
+          /* Add romantic pulse to the button */
+          a {
+            transition: all 0.3s ease;
+            animation: buttonPulse 2s infinite;
+          }
+
+          @keyframes buttonPulse {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(255, 143, 163, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(255, 143, 163, 0.8);
+            }
+          }
+
+          a:hover {
+            transform: scale(1.05);
+            background: rgba(255, 143, 163, 0.3) !important;
+          }
     </style>
 
     </head>
@@ -132,23 +373,142 @@
     </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        let backgroundImages = ["bg1.gif", "bg2.gif", "bg3.gif"]; // List of background images
-        let currentIndex = 0;
-        let backgroundElement = document.querySelector(".absolute > img");
+      document.addEventListener("DOMContentLoaded", function() {
+        // Create heart tunnel effect if coming from previous page
+        if (sessionStorage.getItem('pageTransition') === 'true') {
+          const tunnel = document.createElement('div');
+          tunnel.className = 'heart-tunnel';
+          document.body.appendChild(tunnel);
 
-        function changeBackground() {
-          currentIndex = (currentIndex + 1) % backgroundImages.length;
-          let nextImage = backgroundImages[currentIndex];
-          backgroundElement.style.opacity = 0; // Fade out the current image
-          setTimeout(function () {
-            backgroundElement.src = `../assets/${nextImage}`; // Change to relative path
-            backgroundElement.style.opacity = 1; // Fade in the new image
-          }, 1000);
+          // Create tunnel of hearts
+          for (let i = 0; i < 50; i++) {
+            setTimeout(() => {
+              const heart = document.createElement('div');
+              heart.className = 'tunnel-heart';
+              heart.innerHTML = '❤';
+              heart.style.left = '50%';
+              heart.style.top = '50%';
+              heart.style.fontSize = `${20 + i/2}px`;
+              tunnel.appendChild(heart);
+
+              // Remove hearts after animation
+              setTimeout(() => heart.remove(), 2000);
+            }, i * 40);
+          }
+
+          // Clear transition state
+          sessionStorage.removeItem('pageTransition');
         }
 
-        setInterval(changeBackground, 5000);
-      });
+        // Add sparkle effect on page load
+        function createEntranceSparkles() {
+          const container = document.createElement('div');
+          container.className = 'sparkle-container';
+          document.body.appendChild(container);
+
+          for (let i = 0; i < 30; i++) {
+            setTimeout(() => {
+              const sparkle = document.createElement('div');
+              sparkle.className = 'entrance-sparkle';
+              sparkle.style.left = `${Math.random() * 100}vw`;
+              sparkle.style.top = `${Math.random() * 100}vh`;
+              sparkle.style.animationDelay = `${Math.random() * 1}s`;
+              container.appendChild(sparkle);
+              
+              // Remove sparkle after animation
+              setTimeout(() => sparkle.remove(), 2000);
+            }, i * 50);
+          }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+          // Create entrance sparkles
+          createEntranceSparkles();
+
+          // Existing background image rotation code
+          let backgroundImages = ["bg1.gif", "bg2.gif", "bg3.gif"];
+          let currentIndex = 0;
+          let backgroundElement = document.querySelector(".absolute > img");
+
+          function changeBackground() {
+            currentIndex = (currentIndex + 1) % backgroundImages.length;
+            let nextImage = backgroundImages[currentIndex];
+            backgroundElement.style.opacity = 0;
+            setTimeout(function () {
+              backgroundElement.src = `../assets/${nextImage}`;
+              backgroundElement.style.opacity = 1;
+            }, 1000);
+          }
+
+          setInterval(changeBackground, 5000);
+        });
+
+        function createRosePetals() {
+          const petals = ['🌸', '🌺', '💮', '🎀'];
+          setInterval(() => {
+            const petal = document.createElement('div');
+            petal.className = 'rose-petal';
+            petal.innerHTML = petals[Math.floor(Math.random() * petals.length)];
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.fontSize = (Math.random() * 10 + 15) + 'px';
+            petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            document.body.appendChild(petal);
+            
+            setTimeout(() => petal.remove(), 10000);
+          }, 300);
+        }
+
+        function createFloatingDecorations() {
+          const decorations = ['♥', '✨', '💕'];
+          const container = document.querySelector('.flex.flex-col');
+          
+          decorations.forEach((decor, index) => {
+            const elem = document.createElement('div');
+            elem.className = 'floating-decor';
+            elem.innerHTML = decor;
+            elem.style.left = (index * 50 - 50) + 'px';
+            elem.style.top = '-30px';
+            elem.style.animationDelay = (index * 0.5) + 's';
+            container.appendChild(elem);
+          });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+          // ... existing code ...
+          createRosePetals();
+          createFloatingDecorations();
+        });
+
+        function handlePageTransition() {
+            // Create heart tunnel transition
+            const tunnel = document.createElement('div');
+            tunnel.className = 'heart-tunnel';
+            document.body.appendChild(tunnel);
+
+            // Create heart shower effect
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'tunnel-heart';
+                    heart.innerHTML = '❤';
+                    heart.style.left = `${Math.random() * 100}vw`;
+                    heart.style.top = `${Math.random() * 100}vh`;
+                    heart.style.fontSize = `${20 + i/3}px`;
+                    tunnel.appendChild(heart);
+                }, i * 20);
+            }
+
+            // Fade out current page
+            document.body.style.animation = 'fadeOut 1.5s forwards';
+        }
+
+        document.querySelector('a').addEventListener('click', (e) => {
+            e.preventDefault();
+            handlePageTransition();
+            setTimeout(() => {
+                window.location.href = e.target.href;
+            }, 1500);
+        });
     </script>
   </body>
 </html>

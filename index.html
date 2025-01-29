@@ -328,18 +328,22 @@
         heartsContainer.className = 'hearts-transition';
         document.body.appendChild(heartsContainer);
         
-        // Increased number of hearts significantly
-        for (let i = 0; i < 50; i++) {  // Increased from 25 to 50
+        // Create a heart tunnel effect
+        for (let i = 0; i < 100; i++) {  // Increased hearts for tunnel effect
             setTimeout(() => {
                 const heart = createHeart();
+                heart.style.transform = `translateZ(${i * 10}px)`;
+                heart.style.fontSize = `${36 + i/2}px`; // Hearts get bigger
                 heartsContainer.appendChild(heart);
-                setTimeout(() => heart.remove(), 2500);
-            }, i * 100);  // Decreased delay between hearts from 150ms to 100ms
+            }, i * 50);
         }
 
+        // Store transition state in sessionStorage
+        sessionStorage.setItem('pageTransition', 'true');
+        
         setTimeout(() => {
             window.location.href = 'templates/main.html';
-        }, 2400);
+        }, 2000);  // Slightly shorter to prevent pause
     }
 
     // Add background floating hearts

@@ -42,11 +42,16 @@
             align-items: center;
             height: 100vh;
             font-family: 'Balsamiq Sans', cursive;
+            opacity: 0;
+            animation: pageEnter 1.5s ease-out forwards;
         }
         
         .bunny-container {
             width: var(--bunny-size);
             height: var(--bunny-size);
+            animation: bounceIn 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
         }
         
         .bunny {
@@ -403,6 +408,68 @@
         .bottom-text.hidden {
             opacity: 0; /* Hidden */
         }
+
+        @keyframes pageEnter {
+            0% {
+                opacity: 0;
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Romantic entrance effects */
+        .entrance-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .entrance-heart {
+            position: absolute;
+            color: #ff8fa3;
+            animation: floatInHeart 2s forwards;
+            text-shadow: 0 0 10px rgba(255, 143, 163, 0.8);
+        }
+
+        @keyframes floatInHeart {
+            0% {
+                transform: translate(var(--startX), 100vh) scale(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--endX), -100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Enhance bunny entrance */
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
     </style>
   </head>
   <body>
@@ -450,6 +517,100 @@
     </div>
     <a class="bottom-text">Hit me on my tummy</a>
     
+    <script>
+        // Add this after your existing script
+        document.addEventListener('DOMContentLoaded', () => {
+            // Create entrance hearts
+            const heartsContainer = document.createElement('div');
+            heartsContainer.className = 'entrance-hearts';
+            document.body.appendChild(heartsContainer);
+
+            // Create floating hearts
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'entrance-heart';
+                    heart.innerHTML = '❤';
+                    heart.style.setProperty('--startX', `${Math.random() * 100}vw`);
+                    heart.style.setProperty('--endX', `${Math.random() * 100}vw`);
+                    heart.style.fontSize = `${20 + Math.random() * 20}px`;
+                    heartsContainer.appendChild(heart);
+
+                    // Remove hearts after animation
+                    setTimeout(() => heart.remove(), 2000);
+                }, i * 40);
+            }
+
+            // Remove container after all animations
+            setTimeout(() => heartsContainer.remove(), 3000);
+        });
+
+        // Add this to your existing script
+        function handleTransitionToLetter() {
+            // Create heart spiral effect
+            const container = document.createElement('div');
+            container.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                pointer-events: none;
+            `;
+            document.body.appendChild(container);
+
+            // Create spiral hearts
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '❤';
+                    heart.style.cssText = `
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        font-size: ${20 + i/2}px;
+                        color: #ff8fa3;
+                        text-shadow: 0 0 10px rgba(255, 143, 163, 0.8);
+                        animation: spiralOut 2s forwards;
+                        transform-origin: center;
+                    `;
+                    container.appendChild(heart);
+                }, i * 40);
+            }
+
+            // Add the spiral animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes spiralOut {
+                    0% {
+                        transform: translate(-50%, -50%) rotate(0deg) scale(0.3);
+                        opacity: 0;
+                    }
+                    50% {
+                        opacity: 1;
+                    }
+                    100% {
+                        transform: translate(-50%, -50%) rotate(720deg) scale(2);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Fade out current page
+            document.body.style.animation = 'fadeOut 2s forwards';
+        }
+
+        // Add click handler to your link/button
+        document.querySelector('a[href*="letter.html"]').addEventListener('click', (e) => {
+            e.preventDefault();
+            handleTransitionToLetter();
+            setTimeout(() => {
+                window.location.href = e.target.href;
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
 

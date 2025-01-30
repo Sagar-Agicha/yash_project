@@ -8,8 +8,9 @@
 
     <style>
       body {
-        background: linear-gradient(45deg, #ff69b4, #9F70FD);
-        animation: gradientBG 10s ease infinite;
+        background: linear-gradient(45deg, #ff9ecd, #ff6b95, #ff4777);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
         overflow: hidden;
         font-family: Arial, sans-serif;
         display: flex;
@@ -26,20 +27,21 @@
       }
 
       .container {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        padding: 2rem;
-        border-radius: 20px;
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(15px);
+        padding: 3rem;
+        border-radius: 30px;
+        box-shadow: 0 0 30px rgba(255, 192, 203, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.3);
         text-align: center;
       }
 
       h1 {
-        font-family: 'Dancing Script', cursive;
-        font-size: 2.5em;
-        color: white;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        font-size: 3em;
+        background: linear-gradient(45deg, #ff4777, #ff9ecd);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
         margin-bottom: 1.5rem;
         animation: titleFloat 3s ease-in-out infinite;
       }
@@ -180,26 +182,22 @@
       }
 
       #yesBtn {
-        background: linear-gradient(45deg, #ff4081, #ff6b6b);
-        border: none;
-        font-size: 1.2em;
-        transform-origin: center;
-        animation: pulseBtn 2s infinite;
+        background: linear-gradient(45deg, #ff4777, #ff9ecd);
+        padding: 15px 30px;
+        font-size: 1.3em;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(255, 71, 119, 0.4);
       }
 
-      @keyframes pulseBtn {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
+      #noBtn {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 15px 30px;
+        font-size: 1.3em;
+        border-radius: 25px;
       }
 
-      #yesBtn:hover {
-        background: linear-gradient(45deg, #ff6b6b, #ff4081);
-        transform: scale(1.1);
-        box-shadow: 0 0 20px rgba(255, 64, 129, 0.5);
-      }
-
-      /* Floating hearts background */
+      /* Updated floating hearts animation */
       .floating-hearts {
         position: fixed;
         top: 0;
@@ -208,40 +206,42 @@
         height: 100%;
         pointer-events: none;
         z-index: -1;
+        overflow: hidden;
       }
 
       .float-heart {
         position: absolute;
-        animation: floatUp 15s linear infinite;
-        opacity: 0.6;
+        color: rgba(255, 105, 180, 0.6);
+        animation: floatUpAndSpin 10s linear infinite;
         font-size: 1.5rem;
+        text-shadow: 0 0 10px rgba(255, 182, 193, 0.5);
       }
 
-      @keyframes floatUp {
+      @keyframes floatUpAndSpin {
         0% {
-          transform: translateY(100vh) rotate(0deg);
+          transform: translateY(100vh) rotate(0deg) scale(0.5);
           opacity: 0;
         }
-        10% { opacity: 0.6; }
-        90% { opacity: 0.6; }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
         100% {
-          transform: translateY(-100vh) rotate(360deg);
+          transform: translateY(-20vh) rotate(360deg) scale(1.5);
           opacity: 0;
         }
       }
 
-      /* Update the existing styles */
-      .heart {
-        font-size: 8em;
-        margin-bottom: 1rem;
+      /* Enhanced No button behavior */
+      #noBtn {
+        transition: all 0.3s ease;
       }
 
-      .heartbeat, .heartecho {
-        color: #ff4081;
+      #noBtn:hover {
+        animation: none; /* Remove the previous animation */
       }
-
-      /* Add this right after the <body> tag */
-      <div class="floating-hearts"></div>
 
       /* Add this JavaScript before the closing </body> tag */
       <script>
@@ -252,52 +252,69 @@
         function createHeart() {
           const heart = document.createElement('div');
           heart.className = 'float-heart';
-          heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+          heart.innerHTML = '❤️';
           heart.style.left = Math.random() * 100 + 'vw';
-          heart.style.animationDuration = (Math.random() * 10 + 5) + 's';
+          heart.style.animationDuration = (Math.random() * 5 + 5) + 's'; // 5-10 seconds
+          heart.style.fontSize = (Math.random() * 1 + 0.5) + 'rem'; // Random size between 0.5-1.5rem
           heartsContainer.appendChild(heart);
           
-          setTimeout(() => heart.remove(), 15000);
+          // Remove heart after animation completes
+          setTimeout(() => heart.remove(), 10000);
         }
 
-        setInterval(createHeart, 300);
+        setInterval(createHeart, 500);
 
         // Enhanced No button behavior
         const noBtn = document.getElementById('noBtn');
         const phrases = [
-          "Are you sure? 🥺",
-          "Think again! ❤️",
-          "Don't break my heart 💔",
-          "Please say yes! 🙏",
-          "You're making me sad 😢",
-          "Give love a chance! 💝",
-          "But we're perfect together! ✨",
-          "I'll be the best! 🌟",
-          "Pretty please? 🎀",
-          "Don't do this to me! 💘"
+          "My heart beats for you... 💝",
+          "Every moment without you feels empty 🌹",
+          "You're the missing piece to my puzzle 💖",
+          "Let's write our love story together ✨",
+          "I promise to make you smile everyday 🌟",
+          "You're the one I've been waiting for 💑",
+          "Let's create beautiful memories 💕",
+          "I'll cherish you forever 🤍",
+          "You're my dream come true 🌸",
+          "Our love story awaits... 💫"
         ];
 
         let phraseIndex = 0;
         
-        noBtn.addEventListener('mouseover', function() {
-          // Change button text
-          this.textContent = phrases[phraseIndex];
-          phraseIndex = (phraseIndex + 1) % phrases.length;
+        noBtn.addEventListener('mousemove', function(e) {
+          const x = e.clientX;
+          const y = e.clientY;
           
-          // Random position
-          const maxX = window.innerWidth - this.offsetWidth;
-          const maxY = window.innerHeight - this.offsetHeight;
+          const buttonBox = noBtn.getBoundingClientRect();
+          const buttonCenterX = buttonBox.left + buttonBox.width / 2;
+          const buttonCenterY = buttonBox.top + buttonBox.height / 2;
           
-          const randomX = Math.random() * maxX;
-          const randomY = Math.random() * maxY;
+          // Calculate distance between cursor and button
+          const distance = Math.sqrt(
+            Math.pow(x - buttonCenterX, 2) + 
+            Math.pow(y - buttonCenterY, 2)
+          );
           
-          this.style.position = 'fixed';
-          this.style.left = randomX + 'px';
-          this.style.top = randomY + 'px';
-          
-          // Add shake animation
-          this.style.animation = 'shake 0.5s ease-in-out';
-          setTimeout(() => this.style.animation = '', 500);
+          // Move button away when cursor gets close (within 100px)
+          if (distance < 100) {
+            const moveX = (buttonCenterX - x) * 2;
+            const moveY = (buttonCenterY - y) * 2;
+            
+            // Calculate new position ensuring button stays within viewport
+            let newX = buttonBox.left + moveX;
+            let newY = buttonBox.top + moveY;
+            
+            // Keep button within bounds
+            newX = Math.min(Math.max(0, newX), window.innerWidth - buttonBox.width);
+            newY = Math.min(Math.max(0, newY), window.innerHeight - buttonBox.height);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
+            
+            // Change text when running away
+            this.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+          }
         });
 
         // Make Yes button more attractive

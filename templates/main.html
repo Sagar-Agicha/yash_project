@@ -31,36 +31,57 @@
           
           /* Typewriter effect 1 */
           @keyframes typing {
-            0.0000%, 27.3488% { content: ""; }
-            1.1395%, 26.2093% { content: "P"; }
-            2.2791%, 25.0698% { content: "Pa"; }
-            3.4186%, 23.9302% { content: "Par"; }
-            4.5581%, 22.7907% { content: "Part"; }
-            5.6977%, 21.6512% { content: "Partner"; }
-            6.8372%, 20.5116% { content: "Partner!"; }
-          
-            30.7674%, 51.2791% { content: ""; }
-            31.9070%, 50.1395% { content: "D"; }
-            33.0465%, 49.0000% { content: "Dr"; }
-            34.1860%, 47.8605% { content: "Dre"; }
-            35.3256%, 46.7209% { content: "Dream"; }
-            36.4651%, 45.5814% { content: "Dream G"; }
-            37.6047%, 44.4419% { content: "Dream Gi"; }
-            38.7442%, 43.3023% { content: "Dream Gir"; }
-            39.8837%, 42.1628% { content: "Dream Girl"; }
-            41.0233%, 41.0233% { content: "Dream Girl!"; }
-          
-            54.6977%, 75.2093% { content: ""; }
-            55.8372%, 74.0698% { content: "Z"; }
-            56.9767%, 72.9302% { content: "Za"; }
-            58.1163%, 71.7907% { content: "Zan"; }
-            59.2558%, 70.6512% { content: "Zanit"; }
-            60.3953%, 69.5116% { content: "Zanita"; }
-            61.5349%, 68.3721% { content: "Zanita B"; }
-            62.6744%, 67.2326% { content: "Zanita Ba"; }
-            63.8139%, 66.0930% { content: "Zanita Bab"; }
-            64.9535%, 64.9535% { content: "Zanita Babu"; }
-            66.0930%, 66.0930% { content: "Zanita Babu!"; }
+            0%, 100% { content: ""; }
+            2% { content: "W"; }
+            4% { content: "We"; }
+            6% { content: "Wel"; }
+            8% { content: "Welc"; }
+            10% { content: "Welco"; }
+            12% { content: "Welcom"; }
+            14% { content: "Welcome"; }
+            16% { content: "Welcome t"; }
+            18% { content: "Welcome to"; }
+            20% { content: "Welcome to m"; }
+            22% { content: "Welcome to my"; }
+            24% { content: "Welcome to my h"; }
+            26% { content: "Welcome to my he"; }
+            28% { content: "Welcome to my hea"; }
+            30% { content: "Welcome to my hear"; }
+            32% { content: "Welcome to my heart"; }
+            34% { content: "Welcome to my heart Z"; }
+            36% { content: "Welcome to my heart Za"; }
+            38% { content: "Welcome to my heart Zan"; }
+            40% { content: "Welcome to my heart Zani"; }
+            42% { content: "Welcome to my heart Zanit"; }
+            44% { content: "Welcome to my heart Zanita"; }
+            46% { content: "Welcome to my heart Zanita B"; }
+            48% { content: "Welcome to my heart Zanita Ba"; }
+            50% { content: "Welcome to my heart Zanita Bab"; }
+            52% { content: "Welcome to my heart Zanita Baby"; }
+            54% { content: "Welcome to my heart Zanita Baby ❤"; }
+            56% { content: "Welcome to my heart Zanita Baby ❤🙈"; }
+            58% { content: ""; }
+            60% { content: "H"; }
+            62% { content: "Ha"; }
+            64% { content: "Hap"; }
+            66% { content: "Happ"; }
+            68% { content: "Happy"; }
+            70% { content: "Happy V"; }
+            72% { content: "Happy Va"; }
+            74% { content: "Happy Val"; }
+            76% { content: "Happy Vale"; }
+            78% { content: "Happy Valen"; }
+            80% { content: "Happy Valent"; }
+            82% { content: "Happy Valenti"; }
+            84% { content: "Happy Valentin"; }
+            86% { content: "Happy Valentine"; }
+            88% { content: "Happy Valentine's"; }
+            90% { content: "Happy Valentine's Day"; }
+            92% { content: "Happy Valentine's Day B"; }
+            94% { content: "Happy Valentine's Day Ba"; }
+            96% { content: "Happy valentine's Day Bab"; }
+            98% { content: "Happy valentine's Day Baby"; }
+            100% { content: "Happy valentine's Day Baby ❤"; }
           }
           
           @keyframes blink {
@@ -195,6 +216,11 @@
             opacity: 1 !important;
             z-index: 1;
             animation: imageFadeIn 2s ease-out forwards;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            max-height: 100%;
+            transform: scale(0.4);
           }
 
           @keyframes imageFadeIn {
@@ -340,6 +366,34 @@
             transform: scale(1.05);
             background: rgba(255, 143, 163, 0.3) !important;
           }
+
+          @keyframes pulse {
+            0% {
+              box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+            }
+            70% {
+              box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+            }
+            100% {
+              box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+          }
+
+          .glow-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            padding: 10px 20px;
+            color: white;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+          }
+
+          .glow-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
+          }
     </style>
 
     </head>
@@ -347,22 +401,24 @@
   <body class="overflow-x-hidden bg-gray-900">
     <div class="relative h-screen overflow-hidden">
       <div class="absolute inset-0">
-        <div class="absolute inset-0 flex items-center justify-center">
+        <div class="absolute inset-0 flex items-center justify-center" style="align-items: flex-start; padding-bottom: 5rem;">
           <img
-            class="absolute h-full w-full object-cover transition-opacity duration-1000 ease-in-out opacity-100"
+            class="absolute h-full w-full object-contain transition-opacity duration-1000 ease-in-out opacity-100"
             src="../assets/bg1.gif"
             alt="Background Image"
+            style="transform: scale(2); max-width: 100%; max-height: 100%;"
           />
         </div>
       </div>
+
       <div class="absolute inset-0 flex items-center justify-center z-10">
         <div class="flex flex-col text-white text-center">
           <h1 aria-label="Hi! I'm a developer" class="text-4xl font-bold mb-4 bg-gray-900 bg-opacity-70 p-3 rounded-xl">
-                Welcome my&nbsp;<span class="typewriter nocaret"></span>
+                &nbsp;<span class="typewriter nocaret"></span>
           </h1>
           <a
             href="handshake.html"
-            class="bg-blue-900 bg-opacity-50 p-2 rounded-xl"
+            class="glow-button"
           >
             Lets start a journey together
           </a>

@@ -211,17 +211,28 @@
           overflow-x: auto;
           overflow-y: hidden;
           flex-direction: row;
+          padding: 20px 0;
         }
 
         .img-wrapper {
-          min-height: 20vh;
-          transform: none;
-          flex: 0 0 auto;
+          min-height: auto;
+          height: 80vh;
+          transform: none !important; /* Override all transform classes */
+          flex: 0 0 90vw;
+          margin: 0 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .img-wrapper:hover {
+          min-height: auto;
         }
 
         img {
-          max-width: 70%;
-          max-height: 70%;
+          max-width: 100%;
+          max-height: 70vh;
+          object-fit: contain;
         }
 
         .romantic-header, .romantic-footer {
@@ -247,83 +258,215 @@
             translateY(-3vh);
         }
       }
+
+      /* Add animation keyframes */
+      @keyframes scaleUp {
+        0% { transform: rotate(90deg) scale(0.8); }
+        50% { transform: rotate(90deg) scale(1.4); }
+        100% { transform: rotate(90deg) scale(0.8); }
+      }
+
+      @keyframes scaleDown {
+        0% { transform: rotate(90deg) scale(1.4); }
+        50% { transform: rotate(90deg) scale(0.8); }
+        100% { transform: rotate(90deg) scale(1.4); }
+      }
+
+      /* Update img-wrapper styles */
+      .img-wrapper {
+        transform: rotate(90deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40vh;
+        transform-origin: 50% 50%;
+        transition: 1s;
+      }
+
+      /* Add animation classes */
+      .animate-up {
+        animation: scaleUp 8s infinite ease-in-out;
+      }
+
+      .animate-down {
+        animation: scaleDown 8s infinite ease-in-out;
+      }
+
+      /* Update media query to handle animations */
+      @media (max-width: 768px) {
+        .img-wrapper {
+          animation: none !important; /* Disable animations on mobile */
+          transform: none !important;
+        }
+      }
+
+      /* Add new styles for floating elements */
+      .float-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1000;
+      }
+
+      .floater {
+        position: fixed;
+        pointer-events: none;
+        animation: float 15s linear infinite;
+        opacity: 0.6;
+      }
+
+      .heart {
+        font-size: 24px;
+        color: #e91e63;
+      }
+
+      .butterfly {
+        font-size: 20px;
+        color: #9c27b0;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(0, 100vh) rotate(0deg);
+        }
+        100% {
+          transform: translate(0, -100vh) rotate(360deg);
+        }
+      }
+
+      /* Add style to hide audio element */
+      .hidden-audio {
+        display: none;
+      }
         </style>
     </head>
     <body class="romantic-transition">
-        <div class="romantic-header">Welcome to Our Memories</div>
+        <!-- Add hidden audio element -->
+        <audio class="hidden-audio" autoplay loop>
+            <source src="../assets/background-music.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        
+        <div class="romantic-header">
+            Welcome to Our Memories
+            <div>Thank you for sharing these moments with me.</div>
+        </div>
+
+        <!-- Add floating container -->
+        <div class="float-container" id="floatContainer"></div>
+
         <div class="external">
             <div class="horizontal-scroll-wrapper" id="photoWrapper">
-                <div class="img-wrapper slower">
-                    <a href="https://altphotos.com/photo/stylish-parisian-cafe-terrace-279/" target="_blank" rel="noopener">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/paris-cafe-terrace.jpg" alt="">
-                    </a>
+                <div class="img-wrapper slower animate-up">
+                        <img src="../assets/yash1.jpg" alt="">
                 </div>
+
+                <div class="img-wrapper faster animate-down">
+                        <img src="../assets/yash2.jpg" alt="">
+                </div>
+
+                <div class="img-wrapper slower vertical animate-up">
+                        <img src="../assets/yash3.jpg" alt="">
+                </div>
+
+                <div class="img-wrapper slower slower-down animate-down">
+                        <img src="../assets/yash4.jpg" alt="">
+                </div>
+                
+                <div class="img-wrapper faster1 animate-up">
+                      <img src="../assets/yash5.jpg" alt="">
+                </div>
+
+                <div class="img-wrapper slower2 animate-down">
+                        <img src="../assets/yash6.jpg" alt="">
+                </div>
+
+                <div class="img-wrapper fastest animate-up">
+                        <img src="../assets/yash7.jpg" alt="">
+                </div>
+
+                <div class="img-wrapper slower-down animate-down">
+                        <img src="../assets/yash8.jpg" alt="">
+                </div>
+
                 <div class="img-wrapper faster">
-                    <a href="https://altphotos.com/photo/retro-boy-doll-wearing-elegant-clothes-330/" target="_blank" rel="noopener">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/antiquedollboy.jpg" alt="">
-                    </a>
+                        <img src="../assets/yash9.jpg" alt="">
                 </div>
-                <div class="img-wrapper slower vertical">
-                    <a href="https://altphotos.com/photo/clocks-shop-exposition-window-reflecting-the-streets-277/" target="_blank" rel="noopener">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/windowshopclock.jpg" alt="">
-                    </a>
-                </div>
-                <div class="img-wrapper slower slower-down">
-                    <a href="https://altphotos.com/photo/swans-and-ducks-swimming-in-a-river-264/" target="_blank" rel="noopener">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/swanduckriver.jpg" alt="">
-                    </a>
-                </div>
-                <div class="img-wrapper">
-                    <a href="https://altphotos.com/photo/sidewalk-terrace-of-a-blue-facade-cafe-312/" target="_blank" rel="noopener">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/cafe-terrace.jpg" alt="">
-                    </a>
-                </div>
+
                 <div class="img-wrapper slower">
-                    <a href="https://altphotos.com/photo/paris-waterfront-at-sunset-1555/" target="_blank" rel="noopener">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/paris-seine-boat.jpg" alt="">
-                    </a>
-                </div>
-                <div class="img-wrapper faster1">
-                    <a href="https://altphotos.com/photo/old-man-leaning-over-the-barrier-looking-at-the-river-265/" target="_blank" rel="noopener">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/old-man-river.jpg" alt="">
-                    </a>
-                </div>
-                <div class="img-wrapper slower slower2">
-                    <a href="https://altphotos.com/photo/cafe-terrace-with-a-row-of-retro-tables-261/" target="_blank" rel="noopener">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/cafe-table-street.jpg" alt="">
-                    </a>
-                </div>
-                <div class="img-wrapper">
-                    <a href="https://altphotos.com/photo/street-scene-with-pedestrians-and-dogs-318/" target="_blank" rel="noopener">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/street-scene-people.jpg" alt="">
-                    </a>
-                </div>
-                <div class="img-wrapper slower">
-                    <a href="https://altphotos.com/photo/tourist-barge-on-the-river-seine-near-notre-dame-266/" target="_blank" rel="noopener">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/notre-dame-river-boat.jpg" alt="">
-                    </a>
-                </div>
-                <div class="img-wrapper slower last">
-                    <a href="https://altphotos.com/photo/skulls-decoration-in-a-shop-window-331/" target="_blank" rel="noopener">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/shop-window-reflection.jpg" alt="">
-                    </a>
+                        <img src="../assets/yash10.jpg" alt="">
                 </div>
             </div>
             <header></header>
         </div>
-        <div class="romantic-footer">Thank you for sharing these moments with us.</div>
 
         <script>
             function autoScroll() {
                 const wrapper = document.getElementById('photoWrapper');
                 wrapper.scrollLeft += 1; // Adjust the increment for speed
+                
+                // Check if we've reached the end
                 if (wrapper.scrollLeft >= wrapper.scrollWidth - wrapper.clientWidth) {
-                    wrapper.scrollLeft = 0; // Reset to start
+                    // Smoothly reset to start without visible jump
+                    wrapper.scrollTo({
+                        left: 0,
+                        behavior: 'auto'
+                    });
                 }
             }
 
-            // Scroll every 20 milliseconds
-            setInterval(autoScroll, 20);
+            // Start auto-scrolling and audio when page loads
+            document.addEventListener('DOMContentLoaded', () => {
+                const audio = document.querySelector('.hidden-audio');
+                
+                // Try different ways to start the audio
+                const startAudio = async () => {
+                    try {
+                        // Set volume to a moderate level
+                        audio.volume = 0.5;
+                        await audio.play();
+                    } catch (error) {
+                        console.log("Audio autoplay failed, waiting for user interaction");
+                        
+                        // Add a one-time click listener to the document
+                        document.addEventListener('click', () => {
+                            audio.play();
+                        }, { once: true });
+                    }
+                };
+
+                startAudio();
+                
+                // Start the photo scroll loop
+                setInterval(autoScroll, 20);
+            });
+
+            // Add new script for floating elements
+            function createFloater() {
+                const floaters = ['❤', '💕', '💖', '🦋', '💝', '🦋', '🐼', '🐼', '🐼'];
+                const floater = document.createElement('div');
+                floater.className = 'floater';
+                floater.textContent = floaters[Math.floor(Math.random() * floaters.length)];
+                
+                // Random starting position
+                floater.style.left = Math.random() * 100 + 'vw';
+                
+                // Random animation duration between 10 and 20 seconds
+                floater.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                
+                document.getElementById('floatContainer').appendChild(floater);
+                
+                // Remove the floater after animation
+                setTimeout(() => {
+                    floater.remove();
+                }, 15000);
+            }
+
+            // Create new floater every 500ms
+            setInterval(createFloater, 500);
         </script>
     </body>
 </html>

@@ -393,20 +393,20 @@
         }
 
         .bottom-text {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+            position: absolute;
             text-align: center;
             padding: 10px;
-            background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
-            color: #473929; /* Text color */
-            transition: opacity 1s ease; /* Fade transition */
-            opacity: 1; /* Initially visible */
+            background-color: rgba(255, 255, 255, 0.5);
+            color: #473929;
+            transition: opacity 1s ease;
+            opacity: 1;
+            width: 300px;
+            transform: translateY(320px);
+            border-radius: 15px;
         }
 
         .bottom-text.hidden {
-            opacity: 0; /* Hidden */
+            opacity: 0;
         }
 
         @keyframes pageEnter {

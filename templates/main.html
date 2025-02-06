@@ -90,7 +90,10 @@
           }
           
           .typewriter {
-            --caret: currentcolor;
+            --caret: #ff69b4; /* Pink caret color */
+            font-family: 'Dancing Script', cursive;
+            color: #ff69b4; /* Pink text color */
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
             opacity: 0;
             animation: fadeInText 1s ease-out forwards 1s;
           }
@@ -394,6 +397,9 @@
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
             transform: scale(1.05);
           }
+
+          /* Add the font import at the top of your style section */
+          @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
     </style>
 
     </head>

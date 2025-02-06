@@ -341,15 +341,22 @@
       .hidden-audio {
         display: none;
       }
+
+      /* Add fade-in animation for audio */
+      @keyframes audioFadeIn {
+        from { volume: 0; }
+        to { volume: 0.5; }
+      }
         </style>
     </head>
     <body class="romantic-transition">
-        <!-- Add hidden audio element -->
-        <audio class="hidden-audio" autoplay loop>
-            <source src="../assets/background-music.mp3" type="audio/mp3">
+        <!-- Update audio element -->
+        <audio id="bgAudio" class="hidden-audio" loop>
+            <source src="../assets/bg_audio.mp3" type="audio/mp3">
             Your browser does not support the audio element.
         </audio>
         
+
         <div class="romantic-header">
             Welcome to Our Memories
             <div>Thank you for sharing these moments with me.</div>
@@ -404,41 +411,58 @@
         </div>
 
         <script>
+            function createImageSet() {
+                const wrapper = document.getElementById('photoWrapper');
+                const originalImages = wrapper.innerHTML;
+                // Add two more sets of images for smooth infinite scroll
+                wrapper.innerHTML = originalImages + originalImages + originalImages;
+            }
+
             function autoScroll() {
                 const wrapper = document.getElementById('photoWrapper');
                 wrapper.scrollLeft += 1; // Adjust the increment for speed
                 
-                // Check if we've reached the end
-                if (wrapper.scrollLeft >= wrapper.scrollWidth - wrapper.clientWidth) {
-                    // Smoothly reset to start without visible jump
-                    wrapper.scrollTo({
-                        left: 0,
-                        behavior: 'auto'
-                    });
+                // Check if we've scrolled past the first set of images
+                if (wrapper.scrollLeft >= wrapper.scrollWidth / 3) {
+                    // Reset to the start of the second set without visible jump
+                    wrapper.scrollLeft = 0;
                 }
             }
 
-            // Start auto-scrolling and audio when page loads
+            // Update the audio initialization
             document.addEventListener('DOMContentLoaded', () => {
-                const audio = document.querySelector('.hidden-audio');
+                const audio = document.getElementById('bgAudio');
                 
-                // Try different ways to start the audio
-                const startAudio = async () => {
+                // Create the infinite scroll by duplicating images
+                createImageSet();
+                
+                // Function to handle audio fade-in
+                const fadeInAudio = async () => {
                     try {
-                        // Set volume to a moderate level
-                        audio.volume = 0.5;
+                        audio.volume = 0; // Start with volume 0
                         await audio.play();
+                        
+                        // Gradually increase volume
+                        let volume = 0;
+                        const fadeInterval = setInterval(() => {
+                            if (volume < 0.5) {
+                                volume += 0.1;
+                                audio.volume = volume;
+                            } else {
+                                clearInterval(fadeInterval);
+                            }
+                        }, 200);
                     } catch (error) {
                         console.log("Audio autoplay failed, waiting for user interaction");
                         
-                        // Add a one-time click listener to the document
-                        document.addEventListener('click', () => {
-                            audio.play();
+                        // Try playing on first user interaction
+                        document.addEventListener('click', async () => {
+                            await fadeInAudio();
                         }, { once: true });
                     }
                 };
 
-                startAudio();
+                fadeInAudio();
                 
                 // Start the photo scroll loop
                 setInterval(autoScroll, 20);

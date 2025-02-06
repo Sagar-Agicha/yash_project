@@ -302,11 +302,11 @@
       #titlecontent {
         position: absolute;
         top: 100%;
-        -webkit-animation: scroll 120s linear 4s infinite;
-        -moz-animation: scroll 120s linear 4s infinite;
-        -ms-animation: scroll 120s linear 4s infinite;
-        -o-animation: scroll 120s linear 4s infinite;
-        animation: scroll 120s linear 4s infinite;
+        -webkit-animation: scroll 110s linear 4s infinite;
+        -moz-animation: scroll 110s linear 4s infinite;
+        -ms-animation: scroll 110s linear 4s infinite;
+        -o-animation: scroll 110s linear 4s infinite;
+        animation: scroll 110s linear 4s infinite;
       }
 
       /* animation */
@@ -812,7 +812,7 @@
         // Insert quotes between paragraphs
         for(let i = 2; i < paragraphs.length; i += 3) {
           const quoteDiv = document.createElement('div');
-          quoteDiv.className = 'love-quote';
+          //quoteDiv.className = 'love-quote';
           quoteDiv.innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
           paragraphs[i].parentNode.insertBefore(quoteDiv, paragraphs[i].nextSibling);
         }

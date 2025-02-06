@@ -445,8 +445,8 @@
                         // Gradually increase volume
                         let volume = 0;
                         const fadeInterval = setInterval(() => {
-                            if (volume < 0.5) {
-                                volume += 0.1;
+                            if (volume < 0.01) {
+                                volume += 0.02;
                                 audio.volume = volume;
                             } else {
                                 clearInterval(fadeInterval);
